@@ -14,7 +14,7 @@ and the OpenInfoMan CSV adapter
 
 and the FunctX XQuery Library:
 <pre>
- ~/basex/bin/basex REPO INSTALL http://files.basex.org/modules/expath/functx-1.0.xar 
+ ~/basex/bin/basex -Vc "REPO INSTALL http://files.basex.org/modules/expath/functx-1.0.xar"
 </pre>
 
 Directions
