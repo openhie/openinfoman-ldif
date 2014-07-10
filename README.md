@@ -26,5 +26,7 @@ cd ~/openinfoman-ldif/repo
 basex -Vc "REPO INSTALL openinfoman_ldif_adapter.xqm"
 cd ~/basex/resources/stored_query_definitions
 ln -sf ~/openinfoman-ldif/resources/stored_query_definitions/* .
+cd ~/basex/webapp/
+ln -s ~/openinfoman-ldif/webapp/openinfoman_ldif_adapter_bindings.xqm 
 </pre>
 
