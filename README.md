@@ -8,6 +8,7 @@ Prerequisites
 
 Assumes that you have installed BaseX and OpenInfoMan according to:
 > https://github.com/openhie/openinfoman/wiki/Install-Instructions
+
 and the OpenInfoMan CSV adapter
 > https://github.com/openhie/openinfoman-csv
 
