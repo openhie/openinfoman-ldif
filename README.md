@@ -12,12 +12,17 @@ Assumes that you have installed BaseX and OpenInfoMan according to:
 and the OpenInfoMan CSV adapter
 > https://github.com/openhie/openinfoman-csv
 
+and the FunctX XQuery Library:
+<pre>
+ ~/basex/bin/basex REPO INSTALL http://files.basex.org/modules/expath/functx-1.0.xar 
+</pre>
+
 Directions
 ==========
 <pre>
 cd ~/
 git clone https://github.com/openhie/openinfoman-ldif
-cd ~/opeinfoman-ldif/repo
+cd ~/openinfoman-ldif/repo
 ~/basex/bin/basex -Vc "REPO INSTALL openinfoman_ldif_adapter.xqm"
 cd ~/basex/resources/stored_query_definitions
 ln -sf ~/openinfoman-ldif/resources/stored_query_definitions/* .
