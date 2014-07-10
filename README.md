@@ -1,4 +1,4 @@
-openinfoman-ldif
+ openinfoman-ldif
 ================
 
 OpenInfoman CSD Adapater for configuring LDIF (LDAP) exports
@@ -14,7 +14,7 @@ and the OpenInfoMan CSV adapter
 
 and the FunctX XQuery Library:
 <pre>
- ~/basex/bin/basex -Vc "REPO INSTALL http://files.basex.org/modules/expath/functx-1.0.xar"
+ basex -Vc "REPO INSTALL http://files.basex.org/modules/expath/functx-1.0.xar"
 </pre>
 
 Directions
@@ -23,7 +23,7 @@ Directions
 cd ~/
 git clone https://github.com/openhie/openinfoman-ldif
 cd ~/openinfoman-ldif/repo
-~/basex/bin/basex -Vc "REPO INSTALL openinfoman_ldif_adapter.xqm"
+basex -Vc "REPO INSTALL openinfoman_ldif_adapter.xqm"
 cd ~/basex/resources/stored_query_definitions
 ln -sf ~/openinfoman-ldif/resources/stored_query_definitions/* .
 </pre>
