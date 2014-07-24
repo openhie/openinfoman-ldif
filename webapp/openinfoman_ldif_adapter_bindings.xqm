@@ -48,26 +48,26 @@ declare
       </ul>
 
    let $contents :=
-      <div class='contatiner'>
+     (
 	<a href="{$csd_webconf:baseurl}CSD/adapter/ldif">LDIF Adapters</a>
-        {$ldifs}
-      </div>
+        ,$ldifs
+	)
    return page:wrapper($contents)
   else
   let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
   let $contents := 
-  <div class='container'>
+(
    <p>
      Invalid Ldif ({$ldif_name})
    </p>
-   <p>
+   ,<p>
      <pre class='bodycontainer scrollable pull-left' style='overflow:scroll;font-family: monospace;white-space: pre;'>
        {
 	 $function
        }
      </pre>
    </p>
-  </div>
+)
   return  page:wrapper($contents)
 };
 
@@ -111,34 +111,6 @@ declare
 
 
 declare function page:wrapper($content) {
- <html>
-  <head>
-
-    <link href="{$csd_webconf:baseurl}static/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-    <link href="{$csd_webconf:baseurl}static/bootstrap/css/bootstrap-theme.css" rel="stylesheet"/>
-    
-
-    <link rel="stylesheet" type="text/css" media="screen"   href="{$csd_webconf:baseurl}static/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
-
-    <script src="https://code.jquery.com/jquery.js"/>
-    <script src="{$csd_webconf:baseurl}static/bootstrap/js/bootstrap.min.js"/>
-  </head>
-  <body>  
-    <div class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{$csd_webconf:baseurl}CSD">OpenInfoMan</a>
-        </div>
-      </div>
-    </div>
-    <div class='container'> {$content}</div>
-  </body>
- </html>
+  let $header :=     <link rel="stylesheet" type="text/css" media="screen"   href="{$csd_webconf:baseurl}static/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+  return csd_webconf:wrapper($content,$header)
 };
-
-
