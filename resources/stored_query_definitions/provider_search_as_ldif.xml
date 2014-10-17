@@ -9,7 +9,7 @@
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns:hfp="http://www.w3.org/2001/XMLSchema-hasFacetAndProperty"
   xmlns:os="http://a9.com/-/spec/opensearch/1.1/"
-  uuid="14b8597b-932a-40de-a2ca-094b4b1fe691"
+  urn="urn:openhie.org:openinfoman-ldif:provider_search" 
   content-type="text/plain">
   <csd:description>
     Gets LDIF (for LDAP) representaiton of provider search results

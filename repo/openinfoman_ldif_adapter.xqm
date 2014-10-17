@@ -102,8 +102,8 @@ declare function ldif:get_organization_entry($organization,$doc_name,$ldif_name)
     else 
        let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
        let $t_ou := $function/csd:extension[@type='ou_organization' and @urn='urn:openhie.org:openinfoman:adapter:ldif']/text()
-       let $ou := if ($t_ou) then $t_ou else "ou=organizations,dc=localhost"
-       let $uid :=  string($provider/@oid)
+       let $ou := if ($t_ou) then $t_ou else "ou=organizations,dc=example,dc=com"
+       let $uid :=  string($provider/@entityID)
        return "uid=" || $uid || $ou
   return 
     if (exists($provider)) then
@@ -119,8 +119,8 @@ declare function ldif:get_facility_entry($facility,$doc_name,$ldif_name) {
     else 
        let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
        let $t_ou := $function/csd:extension[@type='ou_facility' and @urn='urn:openhie.org:openinfoman:adapter:ldif']/text()
-       let $ou := if ($t_ou) then $t_ou else "ou=facilities,dc=localhost"
-       let $uid :=  string($provider/@oid)
+       let $ou := if ($t_ou) then $t_ou else "ou=facilities,dc=example,dc=com"
+       let $uid :=  string($provider/@entityID)
        return "uid=" || $uid || "," || $ou 
   return
     if (exists($provider)) then
@@ -137,8 +137,8 @@ declare function ldif:get_provider_entry($provider,$doc_name,$ldif_name) {
     else 
        let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
        let $t_ou := $function/csd:extension[@type='ou_providers' and @urn='urn:openhie.org:openinfoman:adapter:ldif']/text()
-       let $ou := if ($t_ou) then $t_ou else "ou=providers,dc=localhost"
-       let $uid :=  string($provider/@oid)
+       let $ou := if ($t_ou) then $t_ou else "ou=providers,dc=example,dc=com"
+       let $uid :=  string($provider/@entityID)
        return "uid=" || $uid || "," || $ou 
   return ldif:get_provider_entry($provider,$doc_name,$ldif_name,$dn) 
 };
@@ -152,7 +152,7 @@ declare function ldif:get_provider_entry($provider,$doc_name,$ldif_name,$dn) {
       let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
       let $t_mailserver := $function/csd:extension[@type='mailserver' and @urn='urn:openhie.org:openinfoman:adapter:ldif']/text()
       let $mailserver := if ($t_mailserver) then ($t_mailserver) else "localhost"
-      let $uid :=  string($provider/@oid)
+      let $uid :=  string($provider/@entityID)
       return  $uid || "@" || $mailserver
     
   let $common_names := 
