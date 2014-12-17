@@ -64,7 +64,7 @@ declare function ldif:get($csd_doc,$careServicesRequest,$processors as map(xs:st
   let $entities_path := string($function/csd:extension[@type='entities' and @urn='urn:openhie.org:openinfoman:adapter:ldif'])
   let $entities := 
     if  ($entities_path) then
-       xquery:eval( $declare_ns || "declare variable $doc external; $doc" || $entities_path, map { "csd_doc" := $doc}) 
+       xquery:eval( $declare_ns || "declare variable $doc external; $doc" || $entities_path, map { "csd_doc" : $doc}) 
     else
       $doc/csd:CSD/*/*
   
