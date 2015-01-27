@@ -79,12 +79,10 @@ declare
   %output:method("text")
   function page:run_script($ldif_name,$doc_name)
 {
-  let $careServicesRequest := 
-    <csd:careServicesRequest >
-      <csd:function uuid="{$ldif_name}"/>
-    </csd:careServicesRequest>
+  let $requestParams := 
+    <csd:requestParams function="{$ldif_name}" resource="{$doc_name}" base_url="{$csd_webconf:baseurl}"/> 	  	  
   let $doc := csd_dm:open_document($csd_webconf:db,$doc_name)
-  let $contents := csr_proc:process_CSR_stored_results($csd_webconf:db, $doc,$careServicesRequest)
+  let $contents := csr_proc:process_CSR_stored_results($csd_webconf:db, $doc,$requestParams)
   return $contents
 };
 
