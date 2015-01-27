@@ -9,8 +9,10 @@ module namespace ldif = "https://github.com/openhie/openinfoman/adapter/ldif";
 import module namespace oi_csv = "https://github.com/openhie/openinfoman/adapter/csv";
 import module namespace csd_dm = "https://github.com/openhie/openinfoman/csd_dm";
 import module namespace csr_proc = "https://github.com/openhie/openinfoman/csr_proc";
+(:
 import module namespace proc = "http://basex.org/modules/proc ";
 import module namespace file = "http://expath.org/ns/file";
+:)
 import module namespace csd_webconf =  "https://github.com/openhie/openinfoman/csd_webconf";
 import module namespace functx = "http://www.functx.com";
 
@@ -28,7 +30,7 @@ declare function ldif:is_ldif_function($ldif_name) {
 
 declare function ldif:get($csd_doc,$careServicesRequest) 
 {
-  ldif:get($csd_doc,$careServicesRequest,map:new(()))
+  ldif:get($csd_doc,$careServicesRequest,map{})
 };
 
 
