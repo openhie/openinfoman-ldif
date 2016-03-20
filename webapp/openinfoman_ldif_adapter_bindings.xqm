@@ -38,7 +38,7 @@ declare
     let $ldifs := 
       <ul>
         {
-  	  for $doc_name in csd_dm:registered_documents($csd_webconf:db)      
+  	  for $doc_name in csd_dm:registered_documents()      
 	  return
   	  <li>
 	  
@@ -54,7 +54,7 @@ declare
 	)
    return page:wrapper($contents)
   else
-  let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
+  let $function := csr_proc:get_function_definition($ldif_name)
   let $contents := 
 (
    <p>
@@ -81,8 +81,8 @@ declare
 {
   let $requestParams := 
     <csd:requestParams function="{$ldif_name}" resource="{$doc_name}" base_url="{$csd_webconf:baseurl}"/> 	  	  
-  let $doc := csd_dm:open_document($csd_webconf:db,$doc_name)
-  let $contents := csr_proc:process_CSR_stored_results($csd_webconf:db, $doc,$requestParams)
+  let $doc := csd_dm:open_document($doc_name)
+  let $contents := csr_proc:process_CSR_stored_results( $doc,$requestParams)
   return $contents
 };
 

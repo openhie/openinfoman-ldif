@@ -13,7 +13,6 @@ import module namespace csr_proc = "https://github.com/openhie/openinfoman/csr_p
 import module namespace proc = "http://basex.org/modules/proc ";
 import module namespace file = "http://expath.org/ns/file";
 :)
-import module namespace csd_webconf =  "https://github.com/openhie/openinfoman/csd_webconf";
 import module namespace functx = "http://www.functx.com";
 
 declare namespace csd = "urn:ihe:iti:csd:2013";
@@ -21,7 +20,7 @@ declare namespace csd = "urn:ihe:iti:csd:2013";
 
 
 declare function ldif:is_ldif_function($ldif_name) {
-  let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
+  let $function := csr_proc:get_function_definition($ldif_name)
   let $adapter := $function//csd:extension[ @type='ldif' and @urn='urn:openhie.org:openinfoman:adapter']
   return $adapter
 };
@@ -38,7 +37,7 @@ declare function ldif:get($csd_doc,$careServicesRequest,$processors as map(xs:st
 {
   let $ldif_name := string($careServicesRequest/@function)
   let $doc_name := string($careServicesRequest/@resource)
-  let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
+  let $function := csr_proc:get_function_definition($ldif_name)
 
   let $search_func := $function/csd:extension[@type='search' and @urn='urn:openhie.org:openinfoman:adapter:ldif']
   let $doc := 
@@ -56,7 +55,7 @@ declare function ldif:get($csd_doc,$careServicesRequest,$processors as map(xs:st
 	</csd:function>
       </csd:careServicesRequest>
 
-      return csr_proc:process_CSR_stored_results($csd_webconf:db, $csd_doc,$careServicesRequest)
+      return csr_proc:process_CSR_stored_results($csd_doc,$careServicesRequest)
     else
       $csd_doc
 
@@ -102,7 +101,7 @@ declare function ldif:get_organization_entry($organization,$doc_name,$ldif_name)
   let $dn := if ($t_dn) 
     then $t_dn 
     else 
-       let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
+       let $function := csr_proc:get_function_definition($ldif_name)
        let $t_ou := $function/csd:extension[@type='ou_organization' and @urn='urn:openhie.org:openinfoman:adapter:ldif']/text()
        let $ou := if ($t_ou) then $t_ou else "ou=organizations,dc=example,dc=com"
        let $uid :=  string($provider/@entityID)
@@ -119,7 +118,7 @@ declare function ldif:get_facility_entry($facility,$doc_name,$ldif_name) {
   let $dn := if ($t_dn) 
     then $t_dn 
     else 
-       let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
+       let $function := csr_proc:get_function_definition($ldif_name)
        let $t_ou := $function/csd:extension[@type='ou_facility' and @urn='urn:openhie.org:openinfoman:adapter:ldif']/text()
        let $ou := if ($t_ou) then $t_ou else "ou=facilities,dc=example,dc=com"
        let $uid :=  string($provider/@entityID)
@@ -137,7 +136,7 @@ declare function ldif:get_provider_entry($provider,$doc_name,$ldif_name) {
   let $dn := if ($t_dn) 
     then $t_dn 
     else 
-       let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
+       let $function := csr_proc:get_function_definition($ldif_name)
        let $t_ou := $function/csd:extension[@type='ou_providers' and @urn='urn:openhie.org:openinfoman:adapter:ldif']/text()
        let $ou := if ($t_ou) then $t_ou else "ou=providers,dc=example,dc=com"
        let $uid :=  string($provider/@entityID)
@@ -151,7 +150,7 @@ declare function ldif:get_provider_entry($provider,$doc_name,$ldif_name,$dn) {
     if ($t_mail) 
     then $t_mail
     else
-      let $function := csr_proc:get_function_definition($csd_webconf:db,$ldif_name)
+      let $function := csr_proc:get_function_definition($ldif_name)
       let $t_mailserver := $function/csd:extension[@type='mailserver' and @urn='urn:openhie.org:openinfoman:adapter:ldif']/text()
       let $mailserver := if ($t_mailserver) then ($t_mailserver) else "localhost"
       let $uid :=  string($provider/@entityID)
