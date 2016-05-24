@@ -44,15 +44,13 @@ declare function ldif:get($csd_doc,$careServicesRequest,$processors as map(xs:st
     if ($search_func) 
     then
       let $csr :=
-      <csd:careServicesRequest>
-	<csd:function uuid="{$search_func}" >
-	  <csd:requestParams >
-	    {
-	      if ($careServicesRequest/csd:function/csd:requestParams) then $careServicesRequest/csd:function/csd:requestParams/*
-	    else $careServicesRequest/function/requestParams/*
-	    }
-	  </csd:requestParams>
-	</csd:function>
+      <csd:careServicesRequest urn="{$search_func}" >
+	<csd:requestParams >
+	  {
+	    if ($careServicesRequest/csd:function/csd:requestParams) then $careServicesRequest/csd:function/csd:requestParams/*
+	  else $careServicesRequest/function/requestParams/*
+	  }
+	</csd:requestParams>
       </csd:careServicesRequest>
 
       return csr_proc:process_CSR_stored_results($csd_doc,$careServicesRequest)
