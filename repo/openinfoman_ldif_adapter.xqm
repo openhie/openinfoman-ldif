@@ -35,7 +35,7 @@ declare function ldif:get($csd_doc,$careServicesRequest)
 
 declare function ldif:get($csd_doc,$careServicesRequest,$processors as map(xs:string, function(*))) 
 {
-  let $ldif_name := string($careServicesRequest/@function)
+  let $ldif_name := string($careServicesRequest/@urn)
   let $doc_name := string($careServicesRequest/@resource)
   let $function := csr_proc:get_function_definition($ldif_name)
 
